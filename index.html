@@ -55,7 +55,6 @@ h2{font-size:clamp(48px,7vw,82px);line-height:.9;margin:0 0 28px}
 .smallcaps{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
 .divider{width:58px;height:1px;background:var(--line);margin:25px auto}
 .rsvp{text-align:center}
-.rsvp > .button{margin-top:70px}
 .gift{text-align:center}
 .gift-title{font-size:30px;line-height:1.1;letter-spacing:.08em;margin:28px auto 18px}
 .countdown-section{margin-bottom:90px}
@@ -63,26 +62,6 @@ h2{font-size:clamp(48px,7vw,82px);line-height:.9;margin:0 0 28px}
 .reveal.is-visible{opacity:1;transform:translateY(0)}
 .reveal-delay-1{transition-delay:.12s}
 .reveal-delay-2{transition-delay:.24s}
-.rsvp-form{max-width:620px;margin:0 auto;text-align:left}
-.modal{display:none;position:fixed;inset:0;z-index:10;align-items:center;justify-content:center;padding:24px;background:rgba(63,65,64,.58)}
-.modal.is-open{display:flex}
-.modal-content{position:relative;width:min(100%,620px);max-height:calc(100vh - 48px);overflow:auto;background:var(--paper);padding:54px 48px 46px;box-shadow:0 18px 55px rgba(0,0,0,.18)}
-.modal-close{position:absolute;top:18px;right:22px;border:0;background:transparent;color:var(--ink);font:300 28px/1 "Cormorant Garamond",Georgia,serif;cursor:pointer;padding:4px}
-.modal-close:hover,.modal-close:focus{color:var(--muted)}
-.modal-title{text-align:center;font-size:48px;margin:0 0 12px}
-.modal-intro{text-align:center;margin-bottom:34px}
-.form-field{margin:0 0 28px}
-.form-label,.choice-label{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.form-input{width:100%;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);font:300 17px "Cormorant Garamond",Georgia,serif;padding:10px 0;outline:none}
-.form-input:focus{border-bottom-color:var(--ink)}
-.choices{display:flex;gap:28px}
-.choice{display:flex;align-items:center;gap:8px;font-family:"Cormorant Garamond",Georgia,serif;font-size:20px;cursor:pointer}
-.choice input{accent-color:var(--ink);width:15px;height:15px;margin:0}
-.form-note{font-family:"Cormorant Garamond",Georgia,serif;font-size:23px;line-height:1.35;text-align:center;margin:42px 0 0;color:#555}
-.form-submit{display:block;margin:28px auto 0;background:transparent;cursor:pointer}
-.form-status{display:none;text-align:center;font-family:"Cormorant Garamond",Georgia,serif;font-size:25px;line-height:1.35;margin:28px 0 0}
-.form-status.is-visible{display:block}
-.form-status.is-error{color:#8a4d45}
 .button{display:inline-block;border:1px solid var(--ink);padding:14px 34px;color:var(--ink);text-decoration:none;font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin-top:25px;transition:.2s}
 .button:hover,.button:focus{background:var(--ink);color:white}
 .countdown{display:grid;grid-template-columns:repeat(4,1fr);max-width:720px;margin:55px auto 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -118,9 +97,6 @@ footer .date{font-size:9px}
   .countdown{grid-template-columns:repeat(2,1fr);margin-top:38px}
   .num{font-size:40px}
   .photo-strip{height:48vh;min-height:300px}
-  .modal-content{padding:48px 20px 34px}
-  .modal-title{font-size:42px}
-  .choices{gap:18px;flex-wrap:wrap}
   .button{padding:13px 22px}
 }
 </style>
@@ -188,37 +164,9 @@ footer .date{font-size:9px}
     <div class="eyebrow">Tu compañía es lo más importante</div>
     <h2>¿Venís?</h2>
     <p class="lead">Para que sepas, el dresscode es FORMAL.</p>
-    <button class="button" type="button" onclick="openRsvpModal()">Confirmar asistencia</button>
+    <button class="button" type="button" data-google-form-url="" onclick="openGoogleForm(this)">Confirmar asistencia</button>
   </div>
 </section>
-
-<div class="modal" id="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-title" onclick="closeRsvpOnBackdrop(event)">
-  <div class="modal-content">
-    <button class="modal-close" type="button" aria-label="Cerrar formulario" onclick="closeRsvpModal()">×</button>
-    <h2 class="modal-title" id="rsvp-modal-title">¿Venís?</h2>
-    <p class="lead modal-intro">Para organizarnos mejor, te pedimos que confirmes tu asistencia.</p>
-    <form class="rsvp-form" onsubmit="confirmAttendance(event)">
-      <div class="form-field">
-        <span class="form-label">¿Venís?</span>
-        <div class="choices">
-          <label class="choice"><input type="radio" name="attendance" value="si" required> Sí</label>
-          <label class="choice"><input type="radio" name="attendance" value="no"> No</label>
-        </div>
-      </div>
-      <div class="form-field">
-        <label class="form-label" for="guest-name">Nombre y apellido</label>
-        <input class="form-input" id="guest-name" name="guest-name" type="text" autocomplete="name" required>
-      </div>
-      <div class="form-field">
-        <label class="form-label" for="dietary-restriction">¿Tenés alguna restricción alimentaria?</label>
-        <input class="form-input" id="dietary-restriction" name="dietary-restriction" type="text" placeholder="Podés contarnos acá" autocomplete="off">
-      </div>
-      <p class="form-note">Nos encantaría que nos puedas acompañar.</p>
-      <button class="button form-submit" type="submit">Enviar confirmación</button>
-      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-    </form>
-  </div>
-</div>
 
 <section class="gift">
   <div class="inner intro reveal">
@@ -259,32 +207,9 @@ function tick(){
   document.getElementById('mins').textContent=String(mins).padStart(2,'0');
   document.getElementById('secs').textContent=String(secs).padStart(2,'0');
 }
-function openRsvpModal(){
-  const modal = document.getElementById('rsvp-modal');
-  modal.classList.add('is-open');
-  document.body.style.overflow='hidden';
-  modal.querySelector('input').focus();
-}
-function closeRsvpModal(){
-  document.getElementById('rsvp-modal').classList.remove('is-open');
-  document.body.style.overflow='';
-}
-function closeRsvpOnBackdrop(event){
-  if(event.target.id==='rsvp-modal') closeRsvpModal();
-}
-function confirmAttendance(event){
-  event.preventDefault();
-  const form = event.target;
-  const status = document.getElementById('form-status');
-  try{
-    status.textContent='¡Enviado correctamente! Gracias por confirmar.';
-    status.classList.remove('is-error');
-    status.classList.add('is-visible');
-    form.querySelector('.form-submit').style.display='none';
-  }catch(error){
-    status.textContent='No se pudo enviar. Por favor, intentá nuevamente.';
-    status.classList.add('is-visible','is-error');
-  }
+function openGoogleForm(button){
+  const formUrl = button.dataset.googleFormUrl;
+  if(formUrl) window.open(formUrl, '_blank', 'noopener');
 }
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduceMotion){

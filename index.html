@@ -36,11 +36,11 @@ h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400}
 }
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.35))}
 .hero::before{background-image:linear-gradient(rgba(25,25,25,.26),rgba(25,25,25,.28)),url('assets/Foto_frente.jpeg')}
-.hero-content{position:relative;z-index:2;padding:40px 24px}
+.hero-content{position:relative;z-index:2;padding:40px 24px;transform:translateY(18vh)}
 .kicker{font-size:10px;letter-spacing:.34em;text-transform:uppercase;margin-bottom:22px}
 .names{font-size:clamp(52px,8vw,112px);line-height:.88;letter-spacing:.035em;margin:0 0 28px}
-.date{font-size:11px;letter-spacing:.27em;text-transform:uppercase}
-.place{margin-top:16px;font-size:10px;letter-spacing:.34em;text-transform:uppercase}
+.date{font-size:13px;letter-spacing:.27em;text-transform:uppercase}
+.place{margin-top:16px;font-size:12px;letter-spacing:.34em;text-transform:uppercase}
 .scroll{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.28em;text-transform:uppercase;z-index:2;opacity:.9}
 section{padding:110px 24px}
 .inner{max-width:1050px;margin:auto}
@@ -57,7 +57,12 @@ h2{font-size:clamp(48px,7vw,82px);line-height:.9;margin:0 0 28px}
 .divider{width:58px;height:1px;background:var(--line);margin:25px auto}
 .rsvp{text-align:center}
 .gift{text-align:center}
-.gift-title{font-size:30px;line-height:1.1;letter-spacing:.08em;margin:28px auto 18px}
+.gift .intro{padding:34px 0}
+.gift .intro::before,.gift .intro::after{content:"";display:block;width:min(44vw,170px);height:1px;background:var(--line);margin:0 auto;transform:scaleX(0);transition:transform .8s ease .12s}
+.gift .intro::before{margin-bottom:34px}
+.gift .intro::after{margin-top:34px}
+.gift .intro.is-visible::before,.gift .intro.is-visible::after{transform:scaleX(1)}
+.gift-title{font-size:30px;line-height:1.1;letter-spacing:.08em;font-weight:600;margin:28px auto 18px}
 .countdown-section{margin-bottom:90px}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;will-change:opacity,transform}
 .reveal.is-visible{opacity:1;transform:translateY(0)}
@@ -86,10 +91,11 @@ footer .date{font-size:9px}
   .photo-strip{background-position:center}
 }
 @media(max-width:700px){
-  .hero-content{padding:32px 16px}
+  .hero-content{padding:32px 16px;transform:translateY(16vh)}
   .kicker{font-size:9px;letter-spacing:.26em}
   .names{font-size:clamp(48px,16vw,72px);line-height:.92}
-  .date,.place{font-size:9px;letter-spacing:.22em}
+  .date{font-size:12px;letter-spacing:.2em}
+  .place{font-size:12px;letter-spacing:.24em}
   section{padding:72px 16px}
   .grid,.info-grid{grid-template-columns:1fr}
   .card{padding:44px 20px}
@@ -163,7 +169,7 @@ footer .date{font-size:9px}
   <div class="inner rsvp reveal">
     <div class="eyebrow">Tu compañía es lo más importante</div>
     <h2>¿Venís?</h2>
-    <p class="lead">Para que sepas, el dresscode es FORMAL.</p>
+    <p class="lead">Para que sepas, el dresscode es formal.</p>
     <button class="button" type="button" data-google-form-url="https://docs.google.com/forms/d/e/1FAIpQLScRu3XsEeyY69Cm6dLpO4WFg0aHIUDl0u1EjVb8wfXB9nnJnw/viewform?usp=publish-editor" onclick="openGoogleForm(this)">Confirmar asistencia</button>
   </div>
 </section>

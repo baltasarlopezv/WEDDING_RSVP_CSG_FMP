@@ -38,7 +38,7 @@ h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400}
 .hero::before{background-image:linear-gradient(rgba(25,25,25,.26),rgba(25,25,25,.28)),url('assets/Foto_frente.jpeg')}
 .hero-content{position:relative;z-index:2;padding:40px 24px;transform:translateY(25vh)}
 .kicker{font-size:10px;letter-spacing:.34em;text-transform:uppercase;margin-bottom:22px}
-.names{font-size:clamp(52px,8vw,112px);line-height:.88;letter-spacing:.035em;margin:0 0 28px}
+.names{font-size:clamp(46px,7vw,88px);line-height:.88;letter-spacing:.035em;margin:0 0 28px}
 .date{font-size:13px;letter-spacing:.27em;text-transform:uppercase}
 .place{margin-top:16px;font-size:12px;letter-spacing:.34em;text-transform:uppercase}
 .scroll{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.28em;text-transform:uppercase;z-index:2;opacity:.9}
@@ -63,6 +63,16 @@ h2{font-size:clamp(48px,7vw,82px);line-height:.9;margin:0 0 28px}
 .gift .intro::after{margin-top:34px}
 .gift .intro.is-visible::before,.gift .intro.is-visible::after{transform:scaleX(1)}
 .gift-title{font-size:30px;line-height:1.1;letter-spacing:.08em;font-weight:600;margin:28px auto 18px}
+.account-grid{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-width:900px;margin:42px auto 0;padding-top:18px}
+.account-grid::before{content:"";position:absolute;top:0;left:50%;width:min(44vw,170px);height:1px;background:var(--line);transform:translateX(-50%) scaleX(0);transition:transform .8s ease .12s}
+.gift .intro.is-visible .account-grid::before{transform:translateX(-50%) scaleX(1)}
+.account{padding:30px 34px;text-align:left}
+.account + .account{position:relative}
+.account + .account::before{content:"";position:absolute;top:18px;bottom:18px;left:0;width:1px;background:var(--line);transform:scaleY(0);transform-origin:top;transition:transform .8s ease .24s}
+.gift .intro.is-visible .account + .account::before{transform:scaleY(1)}
+.account-title{font-family:"Cormorant Garamond",Georgia,serif;font-size:27px;line-height:1.1;margin:0 0 20px}
+.account p{font-size:11px;line-height:1.8;margin:6px 0;color:#626361;overflow-wrap:anywhere}
+.account strong{color:var(--ink);font-weight:500}
 .countdown-section{margin-bottom:90px}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;will-change:opacity,transform}
 .reveal.is-visible{opacity:1;transform:translateY(0)}
@@ -93,7 +103,7 @@ footer .date{font-size:9px}
 @media(max-width:700px){
   .hero-content{padding:32px 16px;transform:translateY(22vh)}
   .kicker{font-size:9px;letter-spacing:.26em}
-  .names{font-size:clamp(48px,16vw,72px);line-height:.92}
+  .names{font-size:clamp(42px,14vw,62px);line-height:.92}
   .date{font-size:12px;letter-spacing:.2em}
   .place{font-size:12px;letter-spacing:.24em}
   section{padding:72px 16px}
@@ -102,6 +112,11 @@ footer .date{font-size:9px}
   .card h3{font-size:35px}
   .lead{font-size:23px}
   .gift-title{font-size:25px;letter-spacing:.04em}
+  .account-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:34px}
+  .account{padding:28px 10px;text-align:center}
+  .account + .account::before{top:14px;bottom:14px}
+  .account-title{font-size:19px}
+  .account p{font-size:9px;line-height:1.65}
   .countdown{grid-template-columns:repeat(2,1fr);margin-top:38px}
   .num{font-size:40px}
   .photo-strip{height:48vh;min-height:300px}
@@ -179,6 +194,24 @@ footer .date{font-size:9px}
     <p class="lead">El mejor regalo es que nos acompañes en este día, pero</p>
     <h3 class="gift-title">SI QUERÉS HACERNOS UN REGALO...</h3>
     <p class="lead">te lo hacemos más simple</p>
+    <div class="account-grid">
+      <article class="account">
+        <h4 class="account-title">Caja de Ahorro en Pesos</h4>
+        <p><strong>Titular:</strong> Facundo Martinez Paz / Candelaria Sanchez Gavier</p>
+        <p><strong>Banco:</strong> Galicia</p>
+        <p><strong>CTA:</strong> 4052951-6 355-1</p>
+        <p><strong>CBU:</strong> 00703558-30004052951614</p>
+        <p><strong>ALIAS:</strong> CSGFMP</p>
+      </article>
+      <article class="account">
+        <h4 class="account-title">Caja de Ahorro en Dólares</h4>
+        <p><strong>Titular:</strong> Facundo Martinez Paz / Candelaria Sanchez Gavier</p>
+        <p><strong>Banco:</strong> Galicia</p>
+        <p><strong>CTA:</strong> 4033660-2 355-9</p>
+        <p><strong>CBU:</strong> 00703558-31004033660295</p>
+        <p><strong>ALIAS:</strong> CSGFMPUSD</p>
+      </article>
+    </div>
   </div>
 </section>
 
